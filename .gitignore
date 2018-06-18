@@ -63,3 +63,7 @@ build
 report
 .idea
 *.iml
+resources/anathema.js
+resources/anathema.n
+resources/anathema
+resources/build/
