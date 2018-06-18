@@ -1,4 +1,5 @@
 -lib monsoon-embed
+-lib monsoon
 -lib dataclass
 -lib haxelow
 -lib tink_cli
