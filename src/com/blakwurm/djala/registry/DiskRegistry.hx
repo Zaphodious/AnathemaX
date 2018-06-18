@@ -1,5 +1,10 @@
 package com.blakwurm.djala.registry;
 
+import com.blakwurm.djala.Registry;
+import com.blakwurm.djala.GameEntity;
+
+using haxe.Json;
+
 class FileRegistry extends AbstractRegistry {
     var filename: String;
 
