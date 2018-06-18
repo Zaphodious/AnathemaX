@@ -1,0 +1,37 @@
+# -cmd haxelib run openfl build application.xml neko -Dnext
+# -cmd haxelib run openfl build application.xml cpp -Dnext
+
+# --next
+
+-cp src
+-main com.blakwurm.anathema.AnathemaUI
+-lib dataclass
+# -lib haxelow
+# -lib tink_cli
+# -lib haxe-strings
+# -lib monsoon-embed 
+-lib haxeui-core
+-lib haxeui-html5
+-lib hscript
+--each
+
+-js resources/anathema.js
+--next
+
+# -cp src
+# -main com.blakwurm.anathema.AnathemaUI
+
+# -lib dataclass
+# -lib haxelow
+# -lib tink_cli
+# -lib haxe-strings
+# -lib monsoon-embed 
+# -lib haxeui-core
+# -lib haxeui-hxwidgets
+# -lib hxWidgets
+# -lib hscript
+
+# -D ABI=-MD
+# -D WXSTATIC
+
+# -cpp bin/prod/cpp

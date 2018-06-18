@@ -1,0 +1,26 @@
+#shell {
+
+}
+.button.menubutton {
+    background: none;
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+}
+
+.button.menubutton .icon {
+    width: 40px;
+    height: 40px;
+    background: none;
+}
+
+.button.menubutton:down {
+    border-color: #333333;
+    background: none;
+    opacity: 1!important;
+}
+.button.menubutton:hover {
+    border-color: #333333;
+    background: none;
+    opacity: 1!important;
+}

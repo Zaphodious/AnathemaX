@@ -1,0 +1,18 @@
+-cp src
+-cp test
+-lib munit
+-lib mockatoo
+-lib dataclass
+-lib monsoon
+-lib haxelow
+-lib tink_cli
+-lib haxe-strings
+-main TestMain
+
+--each
+
+-cpp bin/test/cpp
+--next
+-neko bin/test/test.n
+--next
+-js bin/test/test.js

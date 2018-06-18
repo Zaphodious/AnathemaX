@@ -1,0 +1,8 @@
+-cmd haxelib install build.hxml --always 
+--next
+-cmd haxelib install test.hxml --always 
+--next
+-cmd haxelib install autocomplete.hxml --always
+--next
+-cmd haxelib run nme setup
+--next
