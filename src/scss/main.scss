@@ -1,6 +1,12 @@
 @import "_responsive.scss";
 
 $mobile-break: 600px;
+$mobile-category-height: 2em;
+
+$color-back-neutral: #212121;
+$color-back-fore: #303030;
+$color-back-deadzone: #000000;
+$color-back-focus: #424242;
 
 * {
     padding: 0;
@@ -35,8 +41,8 @@ body {
 #title {
     @extend %block;
     height: 30px;
-    @include mq($from: mobile) {
         display: none;
+    @include mq($from: mobile) {
     }
 }
 
@@ -46,16 +52,36 @@ body {
     ul {
         li {
             display: inline;
+            width: 2em;
+            height: 2em;
             button {
                 @extend %iconbutton;
                 width: 2em;
                 height: 2em;
+                background-size: contain;
+                background-repeat: no-repeat;
             }
         }
+            #document-category {
+                button {
+                    background-image: url('../img/full-folder.png');
+                }
+            }
+            #settings-category {
+                button {
+                    background-image: url('../img/big-gear.png');
+                }
+            }
+            #export-category {
+                button {
+                    background-image: url('../img/shield-bash.png');
+                }
+            }
     }
     @include mq($from: mobile) {
         background-color: black;
     }
+
 }
 
 #tabs {
@@ -76,6 +102,32 @@ body {
                 background-size: contain;
                 width: 1em;
                 height: 1em
+            }
+        }
+    }
+}
+
+.detail-pane {
+    border: solid 1px;
+    display: block;
+    position: fixed;
+    right: 120%;
+    left: -100%;
+    bottom: 0%;
+    top: $mobile-category-height;
+    background-color: white;
+    transition: right 2s;
+
+    &.showing {
+        right: 30%;
+        left: 0%;
+    }
+    .tree-view {
+        li {
+            ul {
+                li {
+                    list-style-type: disc; 
+                }
             }
         }
     }

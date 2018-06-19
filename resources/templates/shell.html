@@ -10,13 +10,13 @@
     <div id="title">This is a thing!</div>
     <div id="categories">
         <ul>
-            <li id="documents-category"><button type="button">Documents</button></li>
+            <li id="document-category"><button type="button">Documents</button></li>
             <li id="settings-category"><button type="button">Settings</button></li>
             <li id="export-category"><button type="button">Export</button></li>
         </ul>
     </div>
-    <div id="document-view" class="detail-pane">
-        <ul>
+    <div id="document-view" class="detail-pane showing">
+        <ul class="tree-view">
             <li>Characters
                 <ul>
                     <li>Alkiah</li>
@@ -34,6 +34,26 @@
                     </ul>
                 </li>
         </ul>
+    </div>
+    <div id="settings-view" class="detail-pane">
+            <ul class="tree-view">
+                    <li>General
+                        <ul>
+                            <li>Foo</li>
+                            <li>Bar</li>
+                            <li>Baz</li>
+                            <li>Fizz</li>
+                        </ul>
+                    </li>
+                    <li>Advanced
+                            <ul>
+                                <li>Service Worker</li>
+                                <li>Thing</li>
+                                <li>Watcha</li>
+                                <li>Confusing Thing</li>
+                            </ul>
+                        </li>
+                </ul>
     </div>
     <div id="tabs">
         <ul>
