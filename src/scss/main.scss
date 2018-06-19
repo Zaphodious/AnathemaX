@@ -1,0 +1,35 @@
+$mobile-break: 600px;
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+%block {
+    display: block;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+#title {
+    @extend %block;
+    height: 30px;
+}
+
+#categories {
+    @extend %block;
+    background-color: green;
+    @media only screen and (min-width: $mobile-break) {
+        background-color: black;
+    }
+}
+
+#tabs {
+    @extend %block;
+    ul {
+        li {
+            display: inline;
+        }
+    }
+}
