@@ -1,6 +1,9 @@
 package com.blakwurm.djala;
 
 import com.blakwurm.djala.System;
+using monsoon.middleware.Static;
+using monsoon.middleware.Compression;
+using Monsoon;
 
 class ServerSystemModule implements SystemModule {
     public var name: String = "Server";
@@ -12,10 +15,21 @@ class ServerSystemModule implements SystemModule {
         if (isServer) {
             monsoon = new Monsoon();
             trace("Server module booting!");
+            var debugTemplateValues = {pagetitle: "I Love You Liana"}
             monsoon.route(
                 '/',
-                function (req, res) res.send('Hello World')
+                function (req, res) res.send(
+                    new haxe.Template(
+                    sys.io.File.getContent('resources/templates/shell.html')).execute(debugTemplateValues)
+                )
         );
+            monsoon.route(
+                '/char',
+                function (req, res) res.send('Character is')
+        );
+        
+            monsoon.use(Compression.serve());
+            monsoon.use(Static.serve('resources/'));
 
         monsoon.listen(15000);
         trace("Server module has booted!");

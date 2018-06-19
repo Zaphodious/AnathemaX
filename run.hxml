@@ -1,0 +1,2 @@
+-cmd haxe build.hxml
+-cmd neko resources/anathema.n
