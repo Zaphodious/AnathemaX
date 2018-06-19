@@ -1,8 +1,18 @@
+@import "_responsive.scss";
+
 $mobile-break: 600px;
 
 * {
     padding: 0;
     margin: 0;
+}
+
+body {
+    display: block;
+    position: relative;
+    @include mq($from: mobile) {
+        display: grid;
+    }
 }
 
 %block {
@@ -20,7 +30,7 @@ $mobile-break: 600px;
 #categories {
     @extend %block;
     background-color: green;
-    @media only screen and (min-width: $mobile-break) {
+    @include mq($from: mobile) {
         background-color: black;
     }
 }

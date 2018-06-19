@@ -5,4 +5,3 @@
 -cmd haxelib install autocomplete.hxml --always
 --next
 -cmd npm install -g sass
---next
