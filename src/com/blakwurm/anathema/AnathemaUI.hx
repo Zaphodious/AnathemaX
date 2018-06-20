@@ -4,6 +4,7 @@ import com.blakwurm.djala.System;
 import com.blakwurm.djala.Ui;
 import com.blakwurm.djala.Registry;
 
+@:expose
 class AnathemaUI {
     public static function main() {
         trace("Starting thing!");
