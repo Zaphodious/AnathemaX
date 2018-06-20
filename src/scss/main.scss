@@ -1,21 +1,34 @@
 @import "_responsive.scss";
+@import "_fonts.scss";
 
 $mobile-break: 600px;
 $mobile-category-height: 2em;
 
-$color-back-neutral: #212121;
-$color-back-fore: #303030;
-$color-back-deadzone: #000000;
-$color-back-focus: #424242;
+$color-back-editor: #1E1E1E;
+$color-back-detail: #252526;
+$color-detail-treetop: #383838;
+$color-back-categorybar: #333333;
+$color-back-tabbar: #252526;
+$color-back-tab: #2D2D2D;
+$color-back-tab-focused: #1E1E1E;
+
+$color-highlight: #3F3F46;
+$color-editor-highlight: #264F78;
+
+$color-button: #0E639C;
+
+$color-text: #CCCCCC;
 
 * {
     padding: 0;
     margin: 0;
+    color: $color-text;
 }
 
 body {
     display: block;
     position: relative;
+    background-color: $color-back-editor;
     @include mq($from: mobile) {
         @supports (grid-template-areas: "") {
             display: grid;
@@ -24,18 +37,26 @@ body {
 }
 
 %block {
+    border: none;
+    position: absolute;
     display: block;
+    /* display: block;
     border-style: solid;
-    border-width: 1px;
-    border-color: black;
+    border-width: 1px; 
+    border-color: black;*/
 }
 
 %iconbutton {
     display: inline-block;
     color: transparent;
     background-color: transparent;
+    opacity: 0.6;
     border: none;
     font-size: 1em;
+}
+
+%hasshadow {
+    box-shadow: 0 0 0.1em 0.1em black;
 }
 
 #title {
@@ -48,7 +69,10 @@ body {
 
 #categories {
     @extend %block;
-    background-color: green;
+    @extend %hasshadow;
+    background-color: $color-back-categorybar; 
+    z-index: 80;
+    width: 100%;
     ul {
         li {
             display: inline;
@@ -56,10 +80,16 @@ body {
             height: 2em;
             button {
                 @extend %iconbutton;
-                width: 2em;
-                height: 2em;
-                background-size: contain;
+                width: 1.8em;
+                height: 1.8em;
+                margin: 0.2em;
+                background-size: 90%;
+                background-position: center;
+
                 background-repeat: no-repeat;
+            }
+            button:hover {
+                opacity: 100%;
             }
         }
             #document-category {
@@ -79,17 +109,21 @@ body {
             }
     }
     @include mq($from: mobile) {
-        background-color: black;
     }
 
 }
 
 #tabs {
     @extend %block;
+    @extend %hasshadow;
+    background-color: $color-back-tabbar;
+    margin-top: 0em;
+    top: $mobile-category-height;
+    z-index: 50;
     ul {
         li {
             display: inline;
-                background-color: darkgray;
+                background-color: $color-back-tab;
             button {
                 background-color: transparent;
                 border: none;
@@ -108,25 +142,35 @@ body {
 }
 
 .detail-pane {
-    border: solid 1px;
-    display: block;
+    @extend %block;
+    @extend %hasshadow;
+    padding: 0.2em;
     position: fixed;
-    right: 120%;
-    left: -100%;
-    bottom: 0%;
+    background-color: $color-back-detail;
+    z-index: 70;
+    left: -30em;
     top: $mobile-category-height;
-    background-color: white;
-    transition: right 2s;
+    bottom: 0;
+    transition: left 2s;
+    min-width: 14em;
+    max-width: 14em;
+    //overflow: scroll;
 
     &.showing {
-        right: 30%;
-        left: 0%;
+        left: 0em;
+        background-color: $color-back-detail;
     }
     .tree-view {
         li {
+            //border-left: 2px white solid;
+            margin-left: 0.6em;
+            padding-left: 0.3em;
+            list-style-type: url('../img/swords-power.png');
+            list-style-position: inside;
             ul {
                 li {
-                    list-style-type: disc; 
+                    list-style-position: inherit;
+                    list-style-type: square;
                 }
             }
         }
