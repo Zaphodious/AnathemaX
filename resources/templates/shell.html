@@ -4,19 +4,20 @@
 <meta charset=utf-8>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="css/main.css"/>
-<script src="anathema.js" />AnathemaUI.main()</script>
+<script src="anathema.js">console.log("Hello World");</script>
+<script>AnathemaJS.bootSystem("shell");</script>
 <title>::pagetitle::</title>
 </head>
 <body>
     <div id="title">This is a thing!</div>
     <div id="categories">
         <ul>
-            <li id="document-category"><button type="button" onclick="Handlers.toggleCategoryView('document')">Documents</button></li>
-            <li id="settings-category"><button type="button" onclick="Handlers.toggleCategoryView('settings')">Settings</button></li>
-            <li id="export-category"><button type="button" onclick="Handlers.toggleCategoryView('document')">Export</button></li>
+            <li id="document-category"><button type="button" onclick="AnathemaJS.toggleCategoryView('document')">Documents</button></li>
+            <li id="settings-category"><button type="button" onclick="AnathemaJS.toggleCategoryView('settings')">Settings</button></li>
+            <li id="export-category"><button type="button" onclick="AnathemaJS.toggleCategoryView('document')">Export</button></li>
         </ul>
     </div>
-    <div id="document-view" class="category-view showing">
+    <div id="document-view" class="category-view">
         <ul class="tree-view">
             <li>Characters
                 <ul>
@@ -61,10 +62,22 @@
             <li class="rulebook"><button type="button">Core</button><button type="button" class="close">Close</button></li>
             <li class="character"><button type="button">Alkaiah</button><button type="button" class="close">Close</button></li>
             <li class="character"><button type="button">Rajmael</button><button type="button" class="close">Close</button></li>
+            <li class="rulebook"><button type="button">Core</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Alkaiah</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Rajmael</button><button type="button" class="close">Close</button></li>
+            <li class="rulebook"><button type="button">Core</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Alkaiah</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Rajmael</button><button type="button" class="close">Close</button></li>
+            <li class="rulebook"><button type="button">Core</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Alkaiah</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Rajmael</button><button type="button" class="close">Close</button></li>
+            <li class="rulebook"><button type="button">Core</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Alkaiah</button><button type="button" class="close">Close</button></li>
+            <li class="character"><button type="button">Rajmael</button><button type="button" class="close">Close</button></li>
         </ul>
     </div>
     <div id="content">
-
+        <iframe src="/char"></iframe>
     </div>
 </body>
 </html>

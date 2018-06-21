@@ -9,7 +9,7 @@
 # -lib monsoon-embed
 --each
 
--main com.blakwurm.anathema.AnathemaUI
+com.blakwurm.anathema.AnathemaJS
 -js resources/anathema.js
 --next
 

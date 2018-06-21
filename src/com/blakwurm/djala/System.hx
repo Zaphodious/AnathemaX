@@ -33,12 +33,12 @@ class SystemArgs {
     public function new(setup: (System) -> Void) {
         systemSetup = setup;
     }
-    public var client: Bool = true;
     public var server: Bool = false;
     public var headless: Bool = false;
     public var mobile: Bool = false;
     public var dbname: String = "data";
     private var systemSetup: (System) -> Void;
+    public var context: String = "shell";
 
     @:defaultCommand
     public function run() {

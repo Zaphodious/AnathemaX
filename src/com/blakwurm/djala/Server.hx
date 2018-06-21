@@ -25,7 +25,10 @@ class ServerSystemModule implements SystemModule {
         );
             monsoon.route(
                 '/char',
-                function (req, res) res.send('Character is')
+                function (req, res) res.send(
+                    new haxe.Template(
+                    sys.io.File.getContent('resources/templates/character_base.html')).execute(debugTemplateValues)
+                )
         );
         
             monsoon.use(Compression.serve());

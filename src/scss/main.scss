@@ -2,7 +2,9 @@
 @import "_fonts.scss";
 
 $mobile-break: 600px;
-$mobile-category-height: 2em;
+$mobile-category-height: 2.3em;
+$mobile-tab-start: 2.7em;
+$mobile-tab-end: 5em;
 
 $color-back-editor: #1E1E1E;
 $color-back-detail: #252526;
@@ -28,18 +30,20 @@ $color-text: #CCCCCC;
 body {
     display: block;
     position: relative;
+    height: 100%;
     background-color: $color-back-editor;
-    @include mq($from: mobile) {
+    @include mq($from: mobileLandscape) {
         @supports (grid-template-areas: "") {
-            display: grid;
         }
     }
 }
 
 %block {
     border: none;
-    position: absolute;
+    position: fixed;
     display: block;
+    @include mq($from: mobileLandscape) {
+    }
     /* display: block;
     border-style: solid;
     border-width: 1px; 
@@ -53,6 +57,7 @@ body {
     opacity: 0.6;
     border: none;
     font-size: 1em;
+    background-repeat: no-repeat;
 }
 
 %hasshadow {
@@ -63,16 +68,27 @@ body {
     @extend %block;
     height: 30px;
         display: none;
-    @include mq($from: mobile) {
+    @include mq($from: mobileLandscape) {
     }
 }
 
 #categories {
     @extend %block;
     @extend %hasshadow;
+    position: fixed;
     background-color: $color-back-categorybar; 
     z-index: 80;
-    width: 100%;
+    top: 0;
+    height: $mobile-category-height;
+    left: 0;
+    right: 0;
+    @include mq($from: mobileLandscape) {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: $mobile-category-height;
+        height: 100%;
+    }
     ul {
         li {
             display: inline;
@@ -108,7 +124,7 @@ body {
                 }
             }
     }
-    @include mq($from: mobile) {
+    @include mq($from: mobileLandscape) {
     }
 
 }
@@ -118,24 +134,66 @@ body {
     @extend %hasshadow;
     background-color: $color-back-tabbar;
     margin-top: 0em;
-    top: $mobile-category-height;
+    top: $mobile-tab-start;
+    height: $mobile-tab-end - $mobile-tab-start;
+    max-height: $mobile-tab-end - $mobile-tab-start;
+    width: 100%;
+    overflow: scroll;
     z-index: 50;
+    border: none;
+    white-space: nowrap;
+    @include mq($from: mobileLandscape) {
+        top: 0;
+        left: $mobile-category-height;
+        right: 0;
+    }
+
+    &::-webkit-scrollbar {
+        height: 0.5em;
+        width: 0;
+
+    }
+    &::-webkit-scrollbar-track {
+        background-color: $color-back-detail;
+        box-shadow: inset 0px 0px 8px 1px rgba(0,0,0,0.75);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $color-highlight;
+        border: 1px solid $color-detail-treetop;
+        height: 0.1em;
+    }
+
     ul {
         li {
-            display: inline;
+            display: inline-block;
                 background-color: $color-back-tab;
+                padding-top: 0;
+                margin-top: -1px;
+                margin-right: 0.2em;
+                border-bottom: 1px solid $color-back-tabbar;
+                height: $mobile-tab-end - $mobile-tab-start - 0.6em;
             button {
                 background-color: transparent;
                 border: none;
-                padding-right: .4em;
-                padding-left: .4em;
+                height: 100%;
+                width: calc(100% - 1.5em);
+                padding-right: 1em;
+                padding-left: 1em;
             }
             .close {
                 @extend %iconbutton;
+                display: inline-block;
                 background-image: url('../img/red-cancel.png');
                 background-size: contain;
+                background-position: center;
                 width: 1em;
-                height: 1em
+                padding-bottom: 0.5em;
+                height: calc(100% - 0.5em);
+                padding: 0;
+                visibility: hidden;
+            }
+            &:hover .close {
+                visibility: visible; 
             }
         }
     }
@@ -147,18 +205,26 @@ body {
     padding: 0.2em;
     position: fixed;
     background-color: $color-back-detail;
+    background-image: url("../img/script_colorcorrect.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
     z-index: 70;
     left: -30em;
     top: $mobile-category-height;
     bottom: 0;
-    transition: left 2s;
+    transition: left 0.2s;
     min-width: 14em;
     max-width: 14em;
     //overflow: scroll;
-
+    @include mq($from: mobileLandscape) {
+        top: $mobile-category-height + 0.45em;
+    }
     &.showing {
         left: 0em;
         background-color: $color-back-detail;
+        @include mq($from: mobileLandscape) {
+            left: $mobile-category-height;
+        }
     }
     .tree-view {
         li {
@@ -174,5 +240,23 @@ body {
                 }
             }
         }
+    }
+}
+
+#content {
+    position: fixed;
+    top: $mobile-tab-end;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    @include mq($from: mobileLandscape) {
+        left: $mobile-category-height;
+        top: $mobile-category-height + 0.45em;
+    }
+    iframe {
+        @extend %hasshadow;
+        width: 100%;
+        height: 100%;
+        border: none;
     }
 }
