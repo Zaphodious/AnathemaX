@@ -4,12 +4,11 @@ import com.blakwurm.djala.System;
 import com.blakwurm.djala.Registry;
 import js.Browser;
 import js.Browser.document;
+import js.html.DOMElement;
 
 class Ui implements SystemModule {
+
     public function preInit(system: System): Bool {
-        if (!system.systemArgs.headless) {
-            
-        }
         return true;
     }
     public function init(system: System): Bool {
@@ -19,24 +18,28 @@ class Ui implements SystemModule {
     public function postInit(system: System): Bool return true;
 
     static function setupCategoryButtons() {
-        document.querySelector("#document-category button")
+        /* document.querySelector("#document-category button")
             .onclick = function(event) {
-                toggleCategoryView("document");
                 Browser.alert("Doing things with category button!");
-            }
+            } */
     }
+
+    
 }
 
-class CategoryButtonsFns {
-    static function toggleCategoryView(category: String) {
-        document.querySelector("#" + category + "-category button").onclick =
-            function(event) {
-                var classes = document.querySelector("#" category + "-view").classList
-                if (classes.contains("showing")) {
-                    classes.remove("showing")
-                } else {
-                    classes.add("showing")
-                }
-            }
-    }
+@:expose("Handlers") class Handlers {
+    public static function toggleCategoryView(category: String) {
+        var catview = document.querySelector("#" + category + "-view");
+        trace("Pushed button for " + category);
+        for (elem in document.querySelectorAll(".category-view")) {
+            cast(elem, DOMElement).classList.remove("showing");
+            trace(elem);
+        }
+        if (catview.classList.contains("showing")) {
+            catview.classList.remove("showing");
+        } else {
+            catview.classList.add("showing");
+        }
+        trace(document.querySelector("#" + category + "-view"));
+        }
 }
