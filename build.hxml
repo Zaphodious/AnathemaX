@@ -3,6 +3,7 @@
 -cp src
 
 -lib dataclass
+-lib niik
 # -lib haxelow
 # -lib tink_cli
 # -lib haxe-strings

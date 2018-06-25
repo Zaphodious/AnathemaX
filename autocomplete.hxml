@@ -5,6 +5,7 @@
 -lib tink_cli
 -lib haxe-strings
 -lib haxeui-core
+-lib niik
 
 -lib openfl
 -lib haxeui-openfl

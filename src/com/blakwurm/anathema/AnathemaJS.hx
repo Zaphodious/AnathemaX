@@ -22,8 +22,9 @@ class AnathemaJS {
         trace("Done Starting Thing!");
     }
 
-    public static function toggleCategoryView(category: String) {
-        var catview = document.querySelector("#" + category + "-view");
+    public static function toggleCategoryView(category: DOMElement) {
+        trace(category.parentElement);
+        var catview = document.querySelector("#" + category.id + "-view");
 
         //trace("Pushed button for " + category);
 
