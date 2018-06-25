@@ -26,6 +26,9 @@ class System {
         for (sm in modules.iterator()) {
             sm.init(this);
         }
+        for (sm in modules.iterator()) {
+            sm.postInit(this);
+        }
     }
 }
 
@@ -39,6 +42,7 @@ class SystemArgs {
     public var dbname: String = "data";
     private var systemSetup: (System) -> Void;
     public var context: String = "shell";
+    public var bindingsSRC: String = "";
 
     @:defaultCommand
     public function run() {

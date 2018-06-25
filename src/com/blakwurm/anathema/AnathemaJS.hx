@@ -5,6 +5,7 @@ import com.blakwurm.djala.Registry;
 import js.Browser;
 import js.Browser.document;
 import js.html.DOMElement;
+import Niik;
 
 @:expose("AnathemaJS")
  @:keep
@@ -62,4 +63,23 @@ class Ui implements SystemModule {
     }
 
     
+}
+
+class CallbackRegistry  implements SystemModule {
+
+    @exclude public var niik = new Niik();
+
+
+    public function preInit(system: System): Bool {
+
+        return true;
+    }
+
+    public function init(system: System): Bool {
+
+        return true;
+    }
+
+    public function postInit(system: System): Bool return true;
+
 }
