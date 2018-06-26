@@ -6,6 +6,7 @@ import js.Browser;
 import js.Browser.document;
 import js.html.DOMElement;
 import Niik;
+import com.blakwurm.djala.EventHandlerModule;
 
 @:expose("AnathemaJS")
  @:keep
@@ -16,6 +17,10 @@ class AnathemaJS {
         var args = new SystemArgs(function (sys: System) {
             sys.modules.set(Ui, new Ui({}));
             sys.modules.set(RegistrySystemModule, new RegistrySystemModule({}));
+            sys.modules.set(EventHandlerModule, new EventHandlerModule({}).addHandlers(
+                
+            ));
+
         });
         args.context = contextArg;
         //args.mobile = true;
@@ -23,23 +28,7 @@ class AnathemaJS {
         trace("Done Starting Thing!");
     }
 
-    public static function toggleCategoryView(category: DOMElement) {
-        trace(category.parentElement);
-        var catview = document.querySelector("#" + category.id + "-view");
-
-        //trace("Pushed button for " + category);
-
-        var isVisable = catview.classList.contains("showing");
-
-        for (elem in document.querySelectorAll(".category-view")) {
-            cast(elem, DOMElement).classList.remove("showing");
-            //trace(elem);
-        }
-
-        if (!isVisable) catview.classList.add("showing");
-        
-        //trace(catview.classList);
-        }
+    
 }
 
 class Ui implements SystemModule {
@@ -65,21 +54,23 @@ class Ui implements SystemModule {
     
 }
 
-class CallbackRegistry  implements SystemModule {
+class SomeHandlers {
+    public static function toggleCategoryView(event: Event) {
+            var category = event.target;
+            trace(category.parentElement);
+            var catview = document.querySelector("#" + category.id + "-view");
 
-    @exclude public var niik = new Niik();
+            //trace("Pushed button for " + category);
 
+            var isVisable = catview.classList.contains("showing");
 
-    public function preInit(system: System): Bool {
+            for (elem in document.querySelectorAll(".category-view")) {
+                cast(elem, DOMElement).classList.remove("showing");
+                //trace(elem);
+            }
 
-        return true;
-    }
-
-    public function init(system: System): Bool {
-
-        return true;
-    }
-
-    public function postInit(system: System): Bool return true;
-
+            if (!isVisable) catview.classList.add("showing");
+            
+            //trace(catview.classList);
+            }
 }
