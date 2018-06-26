@@ -19,16 +19,25 @@ class System {
         return this;
     }
 
-    public function init() {
-        for (sm in modules.iterator()) {
-            sm.preInit(this);
-        }
+    public function init(): System {
         for (sm in modules.iterator()) {
             sm.init(this);
         }
+        return this;
+    }
+
+    public function preInit(): System {
+        for (sm in modules.iterator()) {
+            sm.preInit(this);
+        }
+        return this;
+    }
+
+    public function postInit(): System {
         for (sm in modules.iterator()) {
             sm.postInit(this);
         }
+        return this;
     }
 }
 
@@ -47,7 +56,7 @@ class SystemArgs {
     @:defaultCommand
     public function run() {
         trace("Setting up the system!");
-        new System().AddArgs(this).runSetupFunction(systemSetup).init();
+        new System().AddArgs(this).runSetupFunction(systemSetup).preInit().init().postInit();
         trace("System is done setting up!");
 
     }

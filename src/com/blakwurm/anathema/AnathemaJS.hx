@@ -6,6 +6,7 @@ import js.Browser;
 import js.Browser.document;
 import js.html.DOMElement;
 import js.html.Event;
+import js.Promise;
 import Niik;
 import com.blakwurm.djala.EventHandlerModule;
 
