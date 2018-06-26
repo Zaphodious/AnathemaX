@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="css/main.css"/>
 <script src="anathema.js">console.log("Hello World");</script>
-<script>AnathemaJS.bootSystem("shell");</script>
+<script>AnathemaJS.bootSystem({context: "shell", bindingSRC: "css/bindings.css"});</script>
 <title>::pagetitle::</title>
 </head>
 <body>
     <div id="title">This is a thing!</div>
     <div id="categories">
         <ul>
-            <li id="document-category"><button type="button" onclick="AnathemaJS.toggleCategoryView(this)">Documents</button></li>
-            <li id="settings-category"><button type="button" onclick="AnathemaJS.toggleCategoryView(this)">Settings</button></li>
-            <li id="export-category"><button type="button" onclick="AnathemaJS.toggleCategoryView(this)">Export</button></li>
+            <li id="document-category"><button type="button" >Documents</button></li>
+            <li id="settings-category"><button type="button" >Settings</button></li>
+            <li id="export-category"><button type="button" >Export</button></li>
         </ul>
     </div>
     <div id="document-view" class="category-view">

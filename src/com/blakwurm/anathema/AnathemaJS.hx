@@ -5,24 +5,31 @@ import com.blakwurm.djala.Registry;
 import js.Browser;
 import js.Browser.document;
 import js.html.DOMElement;
+import js.html.Event;
 import Niik;
 import com.blakwurm.djala.EventHandlerModule;
+
+using String;
 
 @:expose("AnathemaJS")
  @:keep
 class AnathemaJS {
-    public static function bootSystem(contextArg: String) {
-        trace("provided context is " + contextArg);
+
+
+
+    public static function bootSystem(bootArg: {context: String, bindingSRC: String}) {
+        trace("provided context is " + bootArg.context);
         trace("Starting thing!");
         var args = new SystemArgs(function (sys: System) {
             sys.modules.set(Ui, new Ui({}));
             sys.modules.set(RegistrySystemModule, new RegistrySystemModule({}));
             sys.modules.set(EventHandlerModule, new EventHandlerModule({}).addHandlers(
-                
+                ["toggle-category" => SomeHandlers.toggleCategoryView]
             ));
 
         });
-        args.context = contextArg;
+        args.context = bootArg.context;
+        args.bindingsSRC = bootArg.bindingSRC;
         //args.mobile = true;
         args.run();
         trace("Done Starting Thing!");
@@ -56,9 +63,9 @@ class Ui implements SystemModule {
 
 class SomeHandlers {
     public static function toggleCategoryView(event: Event) {
-            var category = event.target;
+            var category: DOMElement = cast event.target;
             trace(category.parentElement);
-            var catview = document.querySelector("#" + category.id + "-view");
+            var catview = document.querySelector("#" + category.parentElement.id.split("-category")[0] + "-view");
 
             //trace("Pushed button for " + category);
 
