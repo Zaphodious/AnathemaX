@@ -4,7 +4,7 @@
 $mobile-break: 600px;
 $mobile-category-height: 2.3em;
 $mobile-tab-start: 2.7em;
-$mobile-tab-end: 5em;
+$mobile-tab-end: 2.27em;
 
 $color-back-editor: #1E1E1E;
 $color-back-detail: #252526;
@@ -217,7 +217,7 @@ body {
     max-width: 14em;
     //overflow: scroll;
     @include mq($from: mobileLandscape) {
-        top: $mobile-category-height + 0.45em;
+        top: 0;//$mobile-category-height + 0.45em;
     }
     &.showing {
         left: 0em;

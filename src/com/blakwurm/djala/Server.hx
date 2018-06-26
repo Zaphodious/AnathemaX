@@ -15,7 +15,9 @@ class ServerSystemModule implements SystemModule {
         if (isServer) {
             monsoon = new Monsoon();
             trace("Server module booting!");
-            var debugTemplateValues = {pagetitle: "I Love You Liana"}
+            var debugTemplateValues = 
+            {pagetitle: "I Love You Liana",
+            pagecontent: sys.io.File.getContent('resources/templates/home.html')}
             monsoon.route(
                 '/',
                 function (req, res) res.send(
