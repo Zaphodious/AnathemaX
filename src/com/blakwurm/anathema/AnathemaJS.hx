@@ -3,6 +3,7 @@ package com.blakwurm.anathema;
 import com.blakwurm.djala.System;
 import com.blakwurm.djala.Registry;
 import js.Browser;
+import js.Browser.window;
 import js.Browser.document;
 import js.html.DOMElement;
 import js.html.Event;
@@ -32,9 +33,20 @@ class AnathemaJS {
         sys.systemArgs.context = bootArg.context;
         sys.systemArgs.bindingsSRC = bootArg.bindingSRC;
         
-        sys.preInit();
-        sys.init();
-        sys.postInit();
+        var promesa = window.fetch(sys.systemArgs.bindingsSRC)
+          .then(function (a) {
+            return a.text();
+        }).then(function (a) {
+            sys.modules.get(EventHandlerModule).cssString = a;
+            return sys.preInit();
+        }).then(function (a) {
+            return sys.init();
+        }).then(function (a) {
+            return sys.postInit();
+        });
+        
+        
+        
 
         trace("Done Starting Thing!");
     }

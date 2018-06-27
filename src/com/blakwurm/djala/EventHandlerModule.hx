@@ -7,6 +7,7 @@ import Niik;
 class EventHandlerModule implements SystemModule {
 
     @exclude public var niik = new Niik();
+    public var cssString: String = "";
 
     public function addHandlers(registry: Niik.HandlerRegistry): EventHandlerModule {
         niik.registerHandlers(registry);
@@ -23,8 +24,13 @@ class EventHandlerModule implements SystemModule {
     }
 
     public function postInit(system: System): Bool {
-        trace("binding src is " + system.systemArgs.bindingsSRC);
-        niik.startWithSRC(system.systemArgs.bindingsSRC);
+        if (cssString == "") {
+            trace ("this is empty!");
+            trace("binding src is " + system.systemArgs.bindingsSRC);
+            niik.startWithSRC(system.systemArgs.bindingsSRC);
+        } else {
+            niik.startWithString(cssString);
+        }
         return true;
     }
 }
