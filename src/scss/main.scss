@@ -129,76 +129,6 @@ body {
 
 }
 
-#tabs {
-    @extend %block;
-    @extend %hasshadow;
-    background-color: $color-back-tabbar;
-    margin-top: 0em;
-    top: $mobile-tab-start;
-    height: $mobile-tab-end - $mobile-tab-start;
-    max-height: $mobile-tab-end - $mobile-tab-start;
-    width: 100%;
-    overflow: scroll;
-    z-index: 50;
-    border: none;
-    white-space: nowrap;
-    @include mq($from: mobileLandscape) {
-        top: 0;
-        left: $mobile-category-height;
-        right: 0;
-    }
-
-    &::-webkit-scrollbar {
-        height: 0.5em;
-        width: 0;
-
-    }
-    &::-webkit-scrollbar-track {
-        background-color: $color-back-detail;
-        box-shadow: inset 0px 0px 8px 1px rgba(0,0,0,0.75);
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: $color-highlight;
-        border: 1px solid $color-detail-treetop;
-        height: 0.1em;
-    }
-
-    ul {
-        li {
-            display: inline-block;
-                background-color: $color-back-tab;
-                padding-top: 0;
-                margin-top: -1px;
-                margin-right: 0.2em;
-                border-bottom: 1px solid $color-back-tabbar;
-                height: $mobile-tab-end - $mobile-tab-start - 0.6em;
-            button {
-                background-color: transparent;
-                border: none;
-                height: 100%;
-                width: calc(100% - 1.5em);
-                padding-right: 1em;
-                padding-left: 1em;
-            }
-            .close {
-                @extend %iconbutton;
-                display: inline-block;
-                background-image: url('../img/red-cancel.png');
-                background-size: contain;
-                background-position: center;
-                width: 1em;
-                padding-bottom: 0.5em;
-                height: calc(100% - 0.5em);
-                padding: 0;
-                visibility: hidden;
-            }
-            &:hover .close {
-                visibility: visible; 
-            }
-        }
-    }
-}
-
 .category-view {
     @extend %block;
     @extend %hasshadow;
@@ -249,6 +179,7 @@ body {
     bottom: 0;
     right: 0;
     left: 0;
+    padding: 1em;
     @include mq($from: mobileLandscape) {
         left: $mobile-category-height;
         top: $mobile-category-height + 0.45em;

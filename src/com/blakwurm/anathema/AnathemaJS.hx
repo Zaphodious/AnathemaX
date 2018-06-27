@@ -21,18 +21,21 @@ class AnathemaJS {
     public static function bootSystem(bootArg: {context: String, bindingSRC: String}) {
         trace("provided context is " + bootArg.context);
         trace("Starting thing!");
-        var args = new SystemArgs(function (sys: System) {
-            sys.modules.set(Ui, new Ui({}));
-            sys.modules.set(RegistrySystemModule, new RegistrySystemModule({}));
-            sys.modules.set(EventHandlerModule, new EventHandlerModule({}).addHandlers(
-                ["toggle-category" => SomeHandlers.toggleCategoryView]
-            ));
+        var sys = new System();
 
-        });
-        args.context = bootArg.context;
-        args.bindingsSRC = bootArg.bindingSRC;
-        //args.mobile = true;
-        args.run();
+        sys.modules.set(Ui, new Ui({}));
+        sys.modules.set(RegistrySystemModule, new RegistrySystemModule({}));
+        sys.modules.set(EventHandlerModule, new EventHandlerModule({}).addHandlers(
+            ["toggle-category" => SomeHandlers.toggleCategoryView]
+        ));
+
+        sys.systemArgs.context = bootArg.context;
+        sys.systemArgs.bindingsSRC = bootArg.bindingSRC;
+        
+        sys.preInit();
+        sys.init();
+        sys.postInit();
+
         trace("Done Starting Thing!");
     }
 

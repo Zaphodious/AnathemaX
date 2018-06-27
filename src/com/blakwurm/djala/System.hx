@@ -6,18 +6,11 @@ import DataClass;
 
 class System {
     public var modules: ModularEntity<SystemModule> = new ModularEntity({name: "System"});
-    public var systemArgs: SystemArgs = new SystemArgs(function (a: System) {});
-    public function new() {}
+    public var systemArgs: SystemArgs;
+    public function new() {this.systemArgs = new SystemArgs(this);}
 
-    public function AddArgs(args: SystemArgs) : System {
-        this.systemArgs = args;
-        return this;
-    }
-
-    public function runSetupFunction(setup: (System) -> Void) : System {
-        setup(this);
-        return this;
-    }
+    public function kickoff(): System return this.preInit().init().postInit();
+    
 
     public function init(): System {
         for (sm in modules.iterator()) {
@@ -42,21 +35,23 @@ class System {
 }
 
 class SystemArgs {
-    public function new(setup: (System) -> Void) {
-        systemSetup = setup;
-    }
+
+    public function new(system: System) {this.system = system;}
+
     public var server: Bool = false;
     public var headless: Bool = false;
     public var mobile: Bool = false;
     public var dbname: String = "data";
-    private var systemSetup: (System) -> Void;
     public var context: String = "shell";
     public var bindingsSRC: String = "";
+
+    // Necessary to make the "run" function work on the command line target.
+    private var system: System;
 
     @:defaultCommand
     public function run() {
         trace("Setting up the system!");
-        new System().AddArgs(this).runSetupFunction(systemSetup).preInit().init().postInit();
+        system.kickoff();
         trace("System is done setting up!");
 
     }
